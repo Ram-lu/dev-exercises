@@ -1,0 +1,19 @@
+{
+  "name": "login-server",
+  "version": "1.0.0",
+  "description": "Ejemplo de desarrollo en paralelo de un servidor de login",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "fs-extra": "^11.2.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
