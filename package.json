@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Ram-lu/dev-exercises/issues"
   },
-  "homepage": "https://github.com/Ram-lu/dev-exercises#readme"
+  "homepage": "https://github.com/Ram-lu/dev-exercises#readme",
+  "dependencies": {
+    "express-validator": "^7.2.1"
+  }
 }

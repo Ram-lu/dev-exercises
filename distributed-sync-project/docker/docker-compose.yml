@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  postgres-users:
+    image: postgres:14
+    container_name: postgres-users
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: users_db
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-users-data:/var/lib/postgresql/data
+      - ./postgres-users/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+
+  postgres-orders:
+    image: postgres:14
+    container_name: postgres-orders
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: orders_db
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres-orders-data:/var/lib/postgresql/data
+      - ./postgres-orders/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres-users-data:
+  postgres-orders-data:
+
+  
