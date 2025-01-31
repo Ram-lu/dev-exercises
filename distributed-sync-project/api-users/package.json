@@ -8,7 +8,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "migrate": "npx drizzle-kit migrate --config=./src/infrastructure/db/drizzle.config.js",
+    "generate-migration": "npx drizzle-kit generate --config=./src/infrastructure/db/drizzle.config.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

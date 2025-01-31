@@ -1,6 +1,6 @@
 module.exports = {
-  schema: "./schema.js", // Ruta correcta al esquema
-  out: "./migrations",    // Carpeta para migraciones
+  schema: "./src/infrastructure/db/schema.js", // Ruta correcta al esquema
+  out: "./src/infrastructure/db/migrations",    // Carpeta para migraciones
   dialect: "postgresql",                                 // Driver de PostgreSQL
   dbCredentials: {
     host: "localhost",

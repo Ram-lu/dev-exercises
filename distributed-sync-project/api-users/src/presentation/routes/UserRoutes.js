@@ -4,28 +4,26 @@ const { check, validationResult } = require('express-validator')
 
 const router = express.Router()
 
-router.post('/register', [
+const validateUserRegistration = [
+    check('name').exists().withMessage('Name is required').notEmpty(),
+    check('email').exists().withMessage('Email is required').isEmail().withMessage('Email is not valid'),
+]
 
-    check('name', 'Name is required').not().isEmpty(),
-    check('email', 'Email is required').not().isEmpty(),
-    check('email', 'Email is not valid').isEmail(),
+const validateUserSearch = [
+    check('email').exists().withMessage('Email is required').isEmail().withMessage('Email is not valid'),
+]
 
-], userController.registerUser)
+const handleValidationErrors = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+    next();
+}
 
-router.get('/searchUser', [
-
-    check('email', 'Email is required').not().isEmpty(),
-    check('email', 'Email is not valid').isEmail(),
-
-], userController.searchUserEmail)
-
-router.put('/modifyUser', [
-
-    check('email', 'Email is required').not().isEmpty(),
-    check('email', 'Email is not valid').isEmail(),
-
-], userController.modifyUser)
-
+router.post('/register', validateUserRegistration, handleValidationErrors, userController.registerUser)
+router.get('/searchUser', validateUserSearch, handleValidationErrors, userController.searchUserEmail)
+router.put('/modifyUser', validateUserSearch, handleValidationErrors, userController.modifyUser)
 router.get('/list', userController.userList)
 
 module.exports = router
+
+
